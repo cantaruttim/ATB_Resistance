@@ -129,3 +129,13 @@ data <- data %>% eucast_rules()
 
 data <- data %>% mutate(mdro = mdro(., guideline = "nl"))
 data %>% count(bacteria_name, mdro)
+
+
+
+resistance_proportion <- data %>%
+ filter_first_isolate() %>%
+ group_by(hospital) %>%
+ proportion_df()
+
+
+head(resistance_proportion)
